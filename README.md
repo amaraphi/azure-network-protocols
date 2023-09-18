@@ -27,31 +27,83 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
 - Observe DNS Traffic
 - Observe RDP Traffic
 
-<h2>Testing Connectivity Between Virtual Machines</h2>
-<p>
-- Using Windows Remote Desktop, connect to the Windows 10 Virtual Machine
-- Open the Windows command line and initiate a ping to the Ubuntu Virtual Machine
-- Observed observed echo request and reply packets in the command line.
-- On Wireshark, filter for ICMP traffic and observe requests and replies from VM1 (Windows 10) and VM 2 (Ubuntu).
-- Initiated perpetual ping between VM1 and VM2 with -t
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Page</title>
+</head>
+<body>
+  <h3>Testing Connectivity Between Virtual Machines</h3>
+  <ul>
+    <li>Using Windows Remote Desktop, connect to the Windows 10 Virtual Machine</li>
+  </ul>
+  <ul>
+    <li>Open the Windows command line and initiate a ping to the Ubuntu Virtual Machine</li>
+  </ul>
+  <ul>
+    <li>Observe echo requests and reply packets in the command line.</li>
+  </ul>
+  <ul>
+    <li>On Wireshark, filter for ICMP traffic and observe requests and replies from VM1 (Windows 10) and VM 2 (Ubuntu).</li>
+  </ul>
+  <ul>
+    <li>Initiated perpetual ping between VM1 and VM2 with -t</li>
+  </ul>
+  <h3>Implementing and Testing and Inbound Security Rules: Blocking Inbound ICMP Traffic</h3>
+  <ul>
+    <li>Navigate to Network Security Groups in the Azure portal.</li>
+  </ul>
+  <ul>
+    <li>Open the Network Security Group for VM-2, the Ubuntu Virtual Machine.</li>
+  </ul>
+  <ul>
+    <li>Under “Inbound Security Rules,” add a new inbound security rule with the following fields filled out:
+      <ul>
+        <li>Source —&gt; Any</li>
+      </ul>
+      <ul>
+        <li>Destination —&gt; Any</li>
+      </ul>
+      <ul>
+        <li>Protocol —&gt; ICMP</li>
+      </ul>
+      <ul>
+        <li>Action — Deny</li>
+      </ul>
+      <ul>
+        <li>Priority —&gt; 200 (Prioritized before all other inbound security rules to screen all incoming traffic)</li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Back in VM-1, observe “request timed out” and “no response” messages from the command line and Wireshark, respectively.</li>
+  </ul>
+  <ul>
+    <li>In the Azure portal, return to the Network Security Group for VM-2 and re-enabled inbound ICMP traffic by changing Action in security rule to “Allow.”</li>
+  </ul>
+  <ul>
+    <li>Returned VM1 and observed resumed flow of ICMP traffic between both virtual machines.</li>
+  </ul>
+  <p>Observing SSH Traffic</p>
+  <ul>
+    <li>Return to VM-1 on Remote Desktop and in the command line use the Ubtuntu Machine’s private IP address to log into the machine
+      <ul>
+        <li>ssh user@machine</li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>In the command line, experiment by entering simple Linux commands (pwd, <strong>mkdir, rmdir)</strong></li>
+  </ul>
+  <ul>
+    <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines</li>
+  </ul>
+  <h3>Observing DHCP Traffic</h3>
+  <ul>
+    <li>In the Windows 10 VM’s command line, use ipconfig /renew to attempt to issue the VM issue a new IP address</li>
+  </ul>
+  <ul>
+    <li>On Wireshark, filter for DHCP and observed traffic between virtual machines.</li>
+  </ul>
+</body>
+</html>
