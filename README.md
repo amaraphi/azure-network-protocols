@@ -39,7 +39,7 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
     <li>Observe echo request and reply packets in the command line.</li>
   </ul>
   <ul>
-    <li>On Wireshark, filter for ICMP traffic and observe requests and replies from VM1 (Windows 10) and VM 2 (Ubuntu).</li>
+    <li>On Wireshark, filter for ICMP traffic and observe requests and replies from VM-1 (Windows 10) and VM-2 (Ubuntu).</li>
   </ul>
   <ul>
     <li>Initiate a perpetual ping between VM1 and VM2 with -t</li>
@@ -77,7 +77,7 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
     <li>In the Azure portal, return to the Network Security Group for VM-2 and re-enabled inbound ICMP traffic by changing Action in security rule to “Allow.”</li>
   </ul>
   <ul>
-    <li>Returned VM1 and observed resumed flow of ICMP traffic between both virtual machines.</li>
+    <li>Return to VM-1 via Remote Desktop and observe the resumed flow of ICMP traffic between both virtual machines.</li>
   </ul>
   <h3>Observing SSH Traffic</h3>
   <ul>
@@ -91,7 +91,7 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
     <li>You’ll be prompted to enter the password that was created during initial setup of the Ubuntu VM.</li>
   </ul>
   <ul>
-    <li>After connecting to VM’s server, experiment by entering simple Linux commands (pwd, <strong>mkdir, rmdir)</strong></li>
+    <li>After connecting to VM’s server, experiment by entering simple Linux commands (pwd, mkdir<strong>,</strong> rmdir<strong>)</strong></li>
   </ul>
   <ul>
     <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines.</li>
@@ -105,10 +105,14 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
   </ul>
   <h3>Observing DNS traffic</h3>
   <ul>
-    <li>In VM-1’s command line, use the nslookup command to find the IP address of a well-known website. In this case, I’ve looked up www.amazon.com.</li>
+    <li>In VM-1’s command line, use the nslookup command to look up the IP address of a well-known website. In this case, I’ve looked up google.com.</li>
   </ul>
   <ul>
-    <li>We can see here that the DNS server has returned Ipv6 addresses. We can force the DNS server to return Amazon’s Ipv4 addresses only by querying its A records</li>
+    <li>We can see here that the DNS server has returned IPv6 and IPv4 addresses. We can force the DNS server to return only Google’s associated IPv4 addresses by querying its A records:
+      <ul>
+        <li>nslookup -q=A google.com</li>
+      </ul>
+    </li>
   </ul>
   <ul>
     <li>Return to Wireshark and observe the flow of traffic between our network’s DNS server, VM-1, and Amazon.</li>
