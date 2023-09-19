@@ -26,28 +26,23 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
 - Observe DHCP Traffic
 - Observe DNS Traffic
 - Observe RDP Traffic
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>New Page</title>
-</head>
+  
 <body>
   <h3>Testing Connectivity Between Virtual Machines</h3>
   <ul>
     <li>Using Windows Remote Desktop, connect to the Windows 10 Virtual Machine</li>
   </ul>
   <ul>
-    <li>Open the Windows command line and initiate a ping to the Ubuntu Virtual Machine</li>
+    <li>Open the Windows command prompt and initiate a ping to the Ubuntu Virtual Machine</li>
   </ul>
   <ul>
-    <li>Observe echo requests and reply packets in the command line.</li>
+    <li>Observe echo request and reply packets in the command line.</li>
   </ul>
   <ul>
     <li>On Wireshark, filter for ICMP traffic and observe requests and replies from VM1 (Windows 10) and VM 2 (Ubuntu).</li>
   </ul>
   <ul>
-    <li>Initiated perpetual ping between VM1 and VM2 with -t</li>
+    <li>Initiate a perpetual ping between VM1 and VM2 with -t</li>
   </ul>
   <h3>Implementing and Testing and Inbound Security Rules: Blocking Inbound ICMP Traffic</h3>
   <ul>
@@ -84,26 +79,39 @@ In this tutorial, we'll use Wireshark to observe traffic between Azure Virtual M
   <ul>
     <li>Returned VM1 and observed resumed flow of ICMP traffic between both virtual machines.</li>
   </ul>
-  <p>Observing SSH Traffic</p>
+  <h3>Observing SSH Traffic</h3>
   <ul>
-    <li>Return to VM-1 on Remote Desktop and in the command line use the Ubtuntu Machine’s private IP address to log into the machine
+    <li>Return to VM-1 on Remote Desktop and open the command prompt. Initiate an SSH session with VM-2 by entering the following command. Remember to use VM-2’s private IP address!
       <ul>
-        <li>ssh user@machine</li>
+        <li>ssh &lt;username&gt;@&lt;ip_address&gt;</li>
       </ul>
     </li>
   </ul>
   <ul>
-    <li>In the command line, experiment by entering simple Linux commands (pwd, <strong>mkdir, rmdir)</strong></li>
+    <li>You’ll be prompted to enter the password that was created during initial setup of the Ubuntu VM.</li>
   </ul>
   <ul>
-    <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines</li>
+    <li>After connecting to VM’s server, experiment by entering simple Linux commands (pwd, <strong>mkdir, rmdir)</strong></li>
+  </ul>
+  <ul>
+    <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines.</li>
   </ul>
   <h3>Observing DHCP Traffic</h3>
   <ul>
-    <li>In the Windows 10 VM’s command line, use ipconfig /renew to attempt to issue the VM issue a new IP address</li>
+    <li>In the Windows 10 VM’s command line, use ipconfig /renew to attempt to issue the VM a new IP address</li>
   </ul>
   <ul>
-    <li>On Wireshark, filter for DHCP and observed traffic between virtual machines.</li>
+    <li>On Wireshark, filter for DHCP and observe the traffic between our virtual network’s DHCP server and VM-1.</li>
+  </ul>
+  <h3>Observing DNS traffic</h3>
+  <ul>
+    <li>In VM-1’s command line, use the nslookup command to find the IP address of a well-known website. In this case, I’ve looked up www.amazon.com.</li>
+  </ul>
+  <ul>
+    <li>We can see here that the DNS server has returned Ipv6 addresses. We can force the DNS server to return Amazon’s Ipv4 addresses only by querying its A records</li>
+  </ul>
+  <ul>
+    <li>Return to Wireshark and observe the flow of traffic between our network’s DNS server, VM-1, and Amazon.</li>
   </ul>
 </body>
 </html>
