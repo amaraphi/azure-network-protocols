@@ -161,7 +161,7 @@ In this tutorial we'll create and deploy two Windows Virtual Machines, use Wires
     <li>Using Windows Remote Desktop, connect to the Windows 10 Virtual Machine</li>
   </ul>
   <ul>
-    <li>Open the Windows command prompt and initiate a ping to the Ubuntu Virtual Machine</li>
+    <li>Open the Windows command prompt and initiate a <code>ping</code> to the Ubuntu Virtual Machine</li>
   </ul>
   <ul>
     <li>Observe echo request and reply packets in the command line.</li>
@@ -211,7 +211,7 @@ In this tutorial we'll create and deploy two Windows Virtual Machines, use Wires
   <ul>
     <li>Return to VM-1 on Remote Desktop and open the command prompt. Initiate an SSH session with VM-2 by entering the following command. Remember to use VM-2’s private IP address!
       <ul>
-        <li><code> ssh <username><ip_address></code></li>
+        <li><code> ssh username@ip_address</code></li>
       </ul>
     </li>
   </ul>
@@ -219,14 +219,14 @@ In this tutorial we'll create and deploy two Windows Virtual Machines, use Wires
     <li>You’ll be prompted to enter the password that was created during initial setup of the Ubuntu VM.</li>
   </ul>
   <ul>
-    <li>After connecting to VM’s server, experiment by entering simple Linux commands (pwd, mkdir<strong>,</strong> rmdir<strong>)</strong></li>
+    <li>After connecting to VM’s server, experiment by entering simple Linux commands (e.g.,<code>pwd</code>, <code>mkdir</code>, <code>rmdir</code>).</li>
   </ul>
   <ul>
-    <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines.</li>
+    <li>On Wireshark, filter for SSH activity and observe flow of SSH traffic between the virtual machines.</li> 
   </ul>
   <h3>Observing DHCP Traffic</h3>
   <ul>
-    <li>In the Windows 10 VM’s command line, use ipconfig /renew to attempt to issue the VM a new IP address</li>
+    <li>In the Windows 10 VM’s command line, use <code>ipconfig /renew</code> to attempt to issue the VM a new IP address</li>
   </ul>
   <ul>
     <li>On Wireshark, filter for DHCP and observe the traffic between our virtual network’s DHCP server and VM-1.</li>
